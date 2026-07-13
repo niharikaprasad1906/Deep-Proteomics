@@ -62,6 +62,12 @@ st.markdown("""
     .res-polar { background-color: rgba(138, 114, 184, 0.18); color: #b39ddb; border-color: rgba(138, 114, 184, 0.3); }
     .res-basic { background-color: rgba(49, 130, 189, 0.18); color: #64b5f6; border-color: rgba(49, 130, 189, 0.3); }
     .res-acidic { background-color: rgba(230, 85, 13, 0.18); color: #ffb74d; border-color: rgba(230, 85, 13, 0.3); }
+    
+    /* Rotating logo animation */
+    @keyframes rotateSlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -160,9 +166,16 @@ def get_coordinates(vocab_list, vector_size, method, dims):
         
     return df
 
-# Sidebar Controls
-st.sidebar.title("🧬 Deep Proteomics")
-st.sidebar.caption("Skip-gram k-mer Embedding Explorer")
+# Sidebar Controls (Rotating Colorful Logo Header)
+st.sidebar.markdown("""
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+    <div style="font-size: 28px; display: inline-block; animation: rotateSlow 10s linear infinite; filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.35));">🧬</div>
+    <div>
+        <h1 style="font-size: 20px; font-weight: 700; margin: 0; background: linear-gradient(135deg, #ffffff 30%, #a78bfa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; line-height: 1.2;">Deep Proteomics</h1>
+        <span style="font-size: 11px; color: #71717a; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Word2Vec k-mer Explorer</span>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # Model Info Card
 st.sidebar.markdown(f"""
