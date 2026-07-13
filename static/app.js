@@ -246,7 +246,7 @@ function plotEmbeddings(highlightNeighbors = null) {
             marker: {
                 size: is3D ? 5 : 7,
                 color: state.embeddings.map(d => d.hydrophobicity),
-                colorscale: 'Coolwarm',
+                colorscale: 'RdBu_r',
                 showscale: true,
                 colorbar: {
                     title: 'Kyte-Doolittle',

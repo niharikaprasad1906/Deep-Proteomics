@@ -345,7 +345,7 @@ with tab_map:
                 marker_opts = dict(
                     size=6 if is_3d else 8,
                     color=df_coords["hydrophobicity"],
-                    colorscale="Coolwarm",
+                    colorscale="RdBu_r",
                     showscale=True,
                     colorbar=dict(title=dict(text="Hydrophobicity", font=dict(color="#a1a1aa", size=10)), tickfont=dict(color="#71717a")),
                     opacity=0.3 if highlight_words else 0.8,
