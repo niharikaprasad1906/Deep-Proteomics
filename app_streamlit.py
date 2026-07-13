@@ -457,6 +457,10 @@ with tab_profile:
     
     sample_seq = "MALWMRLLPLLALLALWGPDPAAAFVNQHLCGSHLVEALYLVCGERGFFYTPKTRREAEDLQVGQVELGGGPGAGSLQPLALEGSLQKRGIVEQCCTSICSLYQLENYCN"
     
+    # Callback to update session state before widget creation
+    def load_insulin_callback():
+        st.session_state["seq_input_val"] = sample_seq
+        
     # Initialize session state for sequence if not exists
     if "seq_input_val" not in st.session_state:
         st.session_state["seq_input_val"] = ""
@@ -468,10 +472,7 @@ with tab_profile:
     with col_btns[0]:
         btn_analyze = st.button("Analyze Sequence", type="primary")
     with col_btns[1]:
-        btn_sample = st.button("Load Human Insulin")
-        if btn_sample:
-            st.session_state["seq_input_val"] = sample_seq
-            st.rerun()
+        st.button("Load Human Insulin", on_click=load_insulin_callback)
             
     if btn_analyze or seq_input:
         cleaned_seq = [aa for aa in seq_input if aa in "ACDEFGHIKLMNPQRSTVWY"]
