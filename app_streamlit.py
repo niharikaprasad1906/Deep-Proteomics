@@ -44,6 +44,18 @@ st.markdown("""
         padding: 15px;
         margin-bottom: 15px;
     }
+    /* Style native container borders to match glass-card aesthetics */
+    div[data-testid="stVerticalBlockBorderWrapper"] {
+        background: rgba(30, 30, 40, 0.45) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 12px !important;
+        padding: 16px !important;
+        margin-bottom: 15px !important;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    div[data-testid="stVerticalBlockBorderWrapper"] > div {
+        padding: 0 !important;
+    }
     /* Residue block styling */
     .res-block {
         display: inline-flex;
@@ -185,7 +197,7 @@ def get_coordinates(vocab_list, vector_size, method, dims):
 
 # Sidebar Controls (Rotating Colorful Logo Header)
 st.sidebar.markdown("""
-<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+<div class="glass-card" style="display: flex; align-items: center; gap: 12px; margin-bottom: 0px;">
     <div style="font-size: 28px; display: inline-block; animation: rotateSlow 10s linear infinite; filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.35));">🧬</div>
     <div>
         <h1 style="font-size: 20px; font-weight: 700; margin: 0; background: linear-gradient(135deg, #ffffff 30%, #a78bfa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; line-height: 1.2;">Deep Proteomics</h1>
@@ -208,17 +220,19 @@ st.sidebar.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-st.sidebar.header("🎛️ Projection Configuration")
-proj_method = st.sidebar.selectbox("Dimension Reduction", ["tsne", "pca"], index=0, format_func=lambda x: "t-SNE" if x=="tsne" else "PCA")
-proj_dims = st.sidebar.selectbox("Projection Mode", [2, 3], index=0, format_func=lambda x: f"{x}D Space")
-color_scheme = st.sidebar.selectbox("Color Mapping", ["group", "hydrophobicity"], index=0, format_func=lambda x: "Biochemical Groups" if x=="group" else "Kyte-Doolittle Hydrophobicity")
+with st.sidebar.container(border=True):
+    st.markdown("<h3 style='margin-top: 0; font-size: 14px; font-weight: 600; text-transform: uppercase; color: #fff; letter-spacing: 0.5px; margin-bottom: 12px;'>🎛️ Projection Configuration</h3>", unsafe_allow_html=True)
+    proj_method = st.selectbox("Dimension Reduction", ["tsne", "pca"], index=0, format_func=lambda x: "t-SNE" if x=="tsne" else "PCA")
+    proj_dims = st.selectbox("Projection Mode", [2, 3], index=0, format_func=lambda x: f"{x}D Space")
+    color_scheme = st.selectbox("Color Mapping", ["group", "hydrophobicity"], index=0, format_func=lambda x: "Biochemical Groups" if x=="group" else "Kyte-Doolittle Hydrophobicity")
 
 # Get Coordinates
 df_coords = get_coordinates(vocab, model.vector_size, proj_method, proj_dims)
 
 # Search Box
-st.sidebar.header("🔍 K-mer Decoder")
-search_query = st.sidebar.text_input("Search a k-mer", value="", max_chars=4, placeholder="e.g. LAL, KRH...").upper().strip()
+with st.sidebar.container(border=True):
+    st.markdown("<h3 style='margin-top: 0; font-size: 14px; font-weight: 600; text-transform: uppercase; color: #fff; letter-spacing: 0.5px; margin-bottom: 12px;'>🔍 K-mer Decoder</h3>", unsafe_allow_html=True)
+    search_query = st.text_input("Search a k-mer", value="", max_chars=4, placeholder="e.g. LAL, KRH...", label_visibility="collapsed").upper().strip()
 
 # Main Application Tabs
 tab_map, tab_profile, tab_docs = st.tabs(["🧬 Embedding Projection", "📊 Sequence Profiler", "📖 Method & Glossary"])
