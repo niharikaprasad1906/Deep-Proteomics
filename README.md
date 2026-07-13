@@ -129,6 +129,23 @@ http://127.0.0.1:5000
 
 ---
 
+## 🎈 Running the Streamlit Dashboard (Streamlit Cloud Deployable)
+
+Streamlit is an excellent option for single-command local serving and instant deployment to **Streamlit Community Cloud** directly from your GitHub repository.
+
+### 🔌 1. Run the Streamlit app locally:
+```bash
+streamlit run app_streamlit.py
+```
+
+### ☁️ 2. Deploy to Streamlit Community Cloud:
+1. Push all code to your GitHub repository.
+2. Go to [share.streamlit.io](https://share.streamlit.io/) and log in with your GitHub account.
+3. Click **New app**, select this repository (`Deep-Proteomics`), the branch (`main`), and set the main file path to `app_streamlit.py`.
+4. Click **Deploy!**
+
+---
+
 ## 🐳 Docker Deployment
 
 To run the application inside a container (serving the web dashboard via a production Gunicorn WSGI server):
