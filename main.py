@@ -77,6 +77,13 @@ def main():
     model_path = os.path.join(args.output, "skipgram_model.model")
     save_model(model, model_path)
     
+    # Export as compressed NumPy embeddings for lightweight dashboard serving
+    try:
+        from export_model import main as export_embeddings
+        export_embeddings()
+    except Exception as e:
+        print(f"Warning: Could not export compressed NumPy embeddings: {e}")
+    
     # Step 4: Run queries/examples
     print("\nTesting Similarity Decoder:")
     vocab = list(model.wv.key_to_index.keys())

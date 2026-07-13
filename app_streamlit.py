@@ -108,27 +108,44 @@ def get_kmer_charge_class(kmer):
 # Cache Model Load
 @st.cache_resource
 def load_w2v_model():
-    from gensim.models import Word2Vec
+    from model import load_model, NumpyWord2Vec
     model_path = os.path.join("output", "skipgram_model.model")
-    if os.path.exists(model_path):
-        try:
-            model = Word2Vec.load(model_path)
-            return model, "Active Pre-trained Model"
-        except Exception as e:
-            st.sidebar.error(f"Error loading model: {e}")
     
-    # Fallback to dummy model
+    # Try loading the saved model (npz or gensim)
+    try:
+        model = load_model(model_path)
+        if isinstance(model, NumpyWord2Vec):
+            status = "Active NumPy Embeddings"
+        else:
+            status = "Active Pre-trained Model (Gensim)"
+        return model, status
+    except Exception as e:
+        st.sidebar.warning(f"Could not load pre-trained model ({e}). Creating demo fallback...")
+    
+    # Fallback to dummy model (pure NumPy, no gensim required)
     import random
+    from model import NumpyWord2VecKeyVectors
     amino_acids = "ACDEFGHIKLMNPQRSTVWY"
-    dummy_corpus = []
-    random.seed(42)
-    for _ in range(200):
-        seq = "".join(random.choices(amino_acids, k=random.randint(15, 30)))
-        kmers = [seq[i:i+3] for i in range(len(seq) - 2)]
-        dummy_corpus.append(kmers)
     
-    model = Word2Vec(sentences=dummy_corpus, vector_size=64, window=4, min_count=1, epochs=5, sg=1)
-    return model, "Demo Fallback Model (No trained model found)"
+    # Generate random 3-mers
+    random.seed(42)
+    dummy_vocab = []
+    while len(dummy_vocab) < 80:
+        kmer = "".join(random.choices(amino_acids, k=3))
+        if kmer not in dummy_vocab:
+            dummy_vocab.append(kmer)
+            
+    # Generate random embeddings vectors
+    dummy_vectors = np.random.uniform(-1.0, 1.0, (len(dummy_vocab), 64)).astype(np.float32)
+    
+    class DummyModel:
+        def __init__(self, vocab, vectors):
+            self.vector_size = 64
+            self.window = 4
+            self.epochs = 5
+            self.wv = NumpyWord2VecKeyVectors(vocab, vectors)
+            
+    return DummyModel(dummy_vocab, dummy_vectors), "Demo Fallback Model (NumPy)"
 
 # Load resources
 model, model_status = load_w2v_model()
