@@ -573,26 +573,56 @@ with tab_profile:
 
 # Tab 3: Docs
 with tab_docs:
-    st.subheader("📖 Biological Word Embeddings")
+    st.markdown("## 📖 Biological Word Embeddings")
     
     col_d1, col_d2 = st.columns(2)
     with col_d1:
-        st.write("""
-        ### 🔬 Methodology
-        This project applies natural language processing algorithms (specifically Word2Vec / Skip-gram) to genomics/proteomics. In this framework:
-        
-        * **Protein Sequences** act as sentences.
-        * **Overlapping k-mers** (sub-strings of length *k*) act as words.
-        * **Skip-gram model** predicts surrounding context k-mers given a target k-mer.
-        
-        Through this training, k-mers that appear in similar biological environments (e.g. alpha-helices, hydrophobic cores, active sites) are mapped to close vectors in the dense multi-dimensional space.
-        """)
+        st.markdown("""
+        <div class="glass-card">
+            <h3 style="margin-top: 0; color: #fff; display: flex; align-items: center; gap: 8px;">🔬 Methodology</h3>
+            <p style="font-size: 14px; color: #a1a1aa; line-height: 1.6; margin-bottom: 15px;">
+                This project applies natural language processing algorithms (specifically Word2Vec / Skip-gram) to genomics/proteomics. In this framework:
+            </p>
+            <ul style="margin-left: 20px; margin-bottom: 15px; font-size: 14px; color: #a1a1aa; line-height: 1.6;">
+                <li><strong>Protein Sequences</strong> act as sentences.</li>
+                <li><strong>Overlapping k-mers</strong> (sub-strings of length <em>k</em>) act as words.</li>
+                <li><strong>Skip-gram model</strong> predicts surrounding context k-mers given a target k-mer.</li>
+            </ul>
+            <p style="font-size: 14px; color: #a1a1aa; line-height: 1.6; margin-top: 15px;">
+                Through this training, k-mers that appear in similar biological environments (e.g. alpha-helices, hydrophobic cores, active sites) are mapped to close vectors in the dense multi-dimensional space.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
         
     with col_d2:
-        st.write("### 🧪 Biochemical Property Glossary")
         st.markdown(f"""
-        * <span style="color:{BIO_COLORS['Hydrophobic']}; font-weight:bold;">Hydrophobic</span>: Non-polar side chains (A, V, I, L, P, M, F, W, Y) that hide from water, usually composing the inner core of folded proteins.
-        * <span style="color:{BIO_COLORS['Polar/Neutral']}; font-weight:bold;">Polar/Neutral</span>: Uncharged polar side chains (S, T, C, N, Q, G) that form hydrogen bonds with water and other polar atoms.
-        * <span style="color:{BIO_COLORS['Basic (Positive)']}; font-weight:bold;">Basic / Positive</span>: Positively charged side chains (K, R, H) at physiological pH, highly hydrophilic and active in electrostatic binding.
-        * <span style="color:{BIO_COLORS['Acidic (Negative)']}; font-weight:bold;">Acidic / Negative</span>: Negatively charged side chains (D, E) that are soluble and often participate in salt-bridges or metal binding.
+        <div class="glass-card">
+            <h3 style="margin-top: 0; color: #fff; display: flex; align-items: center; gap: 8px;">🧪 Biochemical Property Glossary</h3>
+            <ul style="list-style-type: none; padding-left: 0; font-size: 14px; color: #a1a1aa; line-height: 1.6;">
+                <li style="margin-bottom: 12px; display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: {BIO_COLORS['Hydrophobic']}; margin-top: 5px; flex-shrink: 0;"></span>
+                    <div>
+                        <strong style="color: {BIO_COLORS['Hydrophobic']};">Hydrophobic</strong>: Non-polar side chains (A, V, I, L, P, M, F, W, Y) that hide from water, usually composing the inner core of folded proteins.
+                    </div>
+                </li>
+                <li style="margin-bottom: 12px; display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: {BIO_COLORS['Polar/Neutral']}; margin-top: 5px; flex-shrink: 0;"></span>
+                    <div>
+                        <strong style="color: {BIO_COLORS['Polar/Neutral']};">Polar/Neutral</strong>: Uncharged polar side chains (S, T, C, N, Q, G) that form hydrogen bonds with water and other polar atoms.
+                    </div>
+                </li>
+                <li style="margin-bottom: 12px; display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: {BIO_COLORS['Basic (Positive)']}; margin-top: 5px; flex-shrink: 0;"></span>
+                    <div>
+                        <strong style="color: {BIO_COLORS['Basic (Positive)']};">Basic / Positive</strong>: Positively charged side chains (K, R, H) at physiological pH, highly hydrophilic and active in electrostatic binding.
+                    </div>
+                </li>
+                <li style="margin-bottom: 12px; display: flex; gap: 10px; align-items: flex-start;">
+                    <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: {BIO_COLORS['Acidic (Negative)']}; margin-top: 5px; flex-shrink: 0;"></span>
+                    <div>
+                        <strong style="color: {BIO_COLORS['Acidic (Negative)']};">Acidic / Negative</strong>: Negatively charged side chains (D, E) that are soluble and often participate in salt-bridges or metal binding.
+                    </div>
+                </li>
+            </ul>
+        </div>
         """, unsafe_allow_html=True)
