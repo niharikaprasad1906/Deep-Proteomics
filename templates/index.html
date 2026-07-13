@@ -117,29 +117,39 @@
                     <!-- Detail Sidebar -->
                     <div class="detail-panel glass">
                         <h2>🧠 K-mer Inspector</h2>
-                        <div id="inspector-placeholder" class="placeholder-msg">
-                            Hover over any point in the chart or search a k-mer to inspect its biochemical details and similarity relationships.
+                        
+                        <div id="inspector-placeholder" class="placeholder-msg glass-card">
+                            <div class="placeholder-icon">🧬</div>
+                            <p>Hover over any point in the chart or search a k-mer to inspect its biochemical details and similarity relationships.</p>
                         </div>
+                        
                         <div id="inspector-content" class="hidden">
-                            <div class="inspector-header">
-                                <h1 id="ins-kmer">LAL</h1>
-                                <span class="ins-badge" id="ins-group">Hydrophobic</span>
-                            </div>
-                            
-                            <div class="detail-list">
-                                <div class="detail-row">
-                                    <span>Kyte-Doolittle Hydrophobicity</span>
-                                    <strong id="ins-hydro">1.80</strong>
+                            <!-- Selected K-mer Identity & Biochemical Properties Card -->
+                            <div class="card glass-card inspector-prop-card">
+                                <div class="inspector-header">
+                                    <h1 id="ins-kmer">LAL</h1>
+                                    <span class="ins-badge" id="ins-group">Hydrophobic</span>
                                 </div>
-                                <div class="detail-row">
-                                    <span>Properties</span>
-                                    <span id="ins-description" class="subtle-text">Lipophilic, aliphatic core residues.</span>
+                                
+                                <div class="detail-list-new">
+                                    <div class="detail-row">
+                                        <span>Kyte-Doolittle Hydrophobicity</span>
+                                        <strong id="ins-hydro">1.80</strong>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span>Properties</span>
+                                        <span id="ins-description" class="subtle-text">Lipophilic, aliphatic core residues.</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <h3 class="subsection-title">Nearest Neighbors (Similarity Space)</h3>
-                            <div class="neighbors-list" id="ins-neighbors">
-                                <!-- Populated dynamically -->
+                            <!-- Nearest Neighbors Similarity Card -->
+                            <div class="card glass-card inspector-neighbors-card">
+                                <h3>Nearest Neighbors</h3>
+                                <p class="section-desc">Closest k-mers in the embedding space by cosine similarity.</p>
+                                <div class="neighbors-list" id="ins-neighbors">
+                                    <!-- Populated dynamically -->
+                                </div>
                             </div>
                         </div>
                     </div>
