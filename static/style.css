@@ -138,15 +138,18 @@ body {
 
 /* Sidebar panels */
 .card h3 {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: #fff;
     margin-bottom: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     display: flex;
     align-items: center;
     gap: 8px;
+    background: linear-gradient(135deg, #ffffff 50%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .card h3::after {
@@ -388,9 +391,38 @@ button:active {
     border-bottom: 1px solid var(--border-color);
 }
 
-.viz-header h2 {
+.viz-header h2,
+.detail-panel h2,
+.sequence-panel h2,
+.docs-panel h2 {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    background: linear-gradient(135deg, #ffffff 40%, var(--color-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-bottom: 12px;
+    margin-bottom: 10px;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.viz-header h2::after,
+.detail-panel h2::after,
+.sequence-panel h2::after,
+.docs-panel h2::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary) 0%, transparent 100%);
+    box-shadow: 0 0 10px var(--color-primary);
 }
 
 #plotly-chart {
@@ -421,13 +453,7 @@ button:active {
     gap: 20px;
 }
 
-.detail-panel h2 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-color);
-}
+/* Detail panel h2 header styled via common selector above */
 
 .placeholder-msg {
     font-size: 13px;
@@ -704,12 +730,7 @@ textarea {
     overflow-y: auto;
 }
 
-.docs-panel h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-}
+/* Docs panel h2 header styled via common selector above */
 
 .grid-2-cols {
     display: grid;

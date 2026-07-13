@@ -26,7 +26,7 @@
             
             <!-- Model Status Panel -->
             <div class="card glass-card">
-                <h3>Model Status</h3>
+                <h3>⚙️ Model Status</h3>
                 <div class="stats-grid">
                     <div class="stat-item">
                         <span class="stat-label">k-mer Size</span>
@@ -53,7 +53,7 @@
 
             <!-- Projection Setup -->
             <div class="card glass-card">
-                <h3>Projection Setup</h3>
+                <h3>🎛️ Projection Setup</h3>
                 <div class="control-group">
                     <label for="projection-method">Dimension Reduction</label>
                     <select id="projection-method">
@@ -81,7 +81,7 @@
 
             <!-- Search / Decoder -->
             <div class="card glass-card">
-                <h3>K-mer Decoder</h3>
+                <h3>🔍 K-mer Decoder</h3>
                 <p class="section-desc">Search a k-mer to find its closest neighbors in the embedding space.</p>
                 <div class="search-box">
                     <input type="text" id="kmer-search-input" placeholder="e.g. LAL, KRH..." maxlength="4">
@@ -108,7 +108,7 @@
                     <!-- Plot container -->
                     <div class="viz-container glass">
                         <div class="viz-header">
-                            <h2 id="viz-title">k-mer Embeddings Space</h2>
+                            <h2 id="viz-title">✨ k-mer Embeddings Space</h2>
                             <div class="loader-spinner" id="plot-loader"></div>
                         </div>
                         <div id="plotly-chart"></div>
@@ -116,7 +116,7 @@
                     
                     <!-- Detail Sidebar -->
                     <div class="detail-panel glass">
-                        <h2>K-mer Inspector</h2>
+                        <h2>🧠 K-mer Inspector</h2>
                         <div id="inspector-placeholder" class="placeholder-msg">
                             Hover over any point in the chart or search a k-mer to inspect its biochemical details and similarity relationships.
                         </div>
@@ -137,7 +137,7 @@
                                 </div>
                             </div>
 
-                            <h3 class="subsection-title">Nearest Neighbors (Similarity Space)</h3>
+                            <h3 class="subsection-title">🔗 Nearest Neighbors (Similarity Space)</h3>
                             <div class="neighbors-list" id="ins-neighbors">
                                 <!-- Populated dynamically -->
                             </div>
@@ -149,7 +149,7 @@
             <!-- Tab 2: Sequence Profiler -->
             <section id="tab-profile" class="tab-content">
                 <div class="sequence-panel glass">
-                    <h2>Protein Sequence Profiler</h2>
+                    <h2>📊 Protein Sequence Profiler</h2>
                     <p class="section-desc">Paste an amino acid sequence to project its k-mer sub-segments along the embedding dimensions and compute localized biophysical properties.</p>
                     
                     <div class="seq-input-area">
@@ -165,31 +165,31 @@
                     <div id="seq-results" class="hidden">
                         <div class="seq-metrics-grid">
                             <div class="card glass-card">
-                                <h3>Sequence Length</h3>
+                                <h3>📏 Sequence Length</h3>
                                 <p class="metric-val" id="seq-len-val">0</p>
                             </div>
                             <div class="card glass-card">
-                                <h3>Mean Hydrophobicity</h3>
+                                <h3>💧 Mean Hydrophobicity</h3>
                                 <p class="metric-val" id="seq-hydro-val">0.00</p>
                             </div>
                             <div class="card glass-card">
-                                <h3>Vocabulary Coverage</h3>
+                                <h3>🎯 Vocabulary Coverage</h3>
                                 <p class="metric-val" id="seq-coverage-val">0%</p>
                             </div>
                         </div>
 
                         <div class="chart-row">
                             <div class="seq-chart-container glass">
-                                <h3>Kyte-Doolittle Hydrophobicity Scale Along Sequence</h3>
+                                <h3>📈 Hydrophobicity Curve</h3>
                                 <div id="seq-hydro-chart"></div>
                             </div>
                             <div class="seq-chart-container glass">
-                                <h3>K-mer Embeddings Coherence (Next-Neighbor Similarity)</h3>
+                                <h3>🔗 Embedding Coherence</h3>
                                 <div id="seq-sim-chart"></div>
                             </div>
                         </div>
 
-                        <h3>Sequence Residue Decoder</h3>
+                        <h3>🧩 Sequence Residue Decoder</h3>
                         <div class="sequence-display" id="sequence-residues-map">
                             <!-- Dynamic colored residues -->
                         </div>
@@ -200,10 +200,10 @@
             <!-- Tab 3: Docs / Info -->
             <section id="tab-docs" class="tab-content">
                 <div class="docs-panel glass">
-                    <h2>Biological Word Embeddings</h2>
+                    <h2>📖 Biological Word Embeddings</h2>
                     <div class="grid-2-cols">
                         <div>
-                            <h3>Methodology</h3>
+                            <h3>🔬 Methodology</h3>
                             <p>This project applies natural language processing algorithms (specifically Word2Vec / Skip-gram) to genomics/proteomics. In this framework:</p>
                             <ul>
                                 <li><strong>Protein Sequences</strong> act as sentences.</li>
@@ -214,7 +214,7 @@
                         </div>
 
                         <div>
-                            <h3>Biochemical Property Glossary</h3>
+                            <h3>🧪 Biochemical Property Glossary</h3>
                             <div class="glossary-item">
                                 <span class="indicator-dot dot-hydrophobic"></span>
                                 <div>
