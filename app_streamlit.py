@@ -457,7 +457,12 @@ with tab_profile:
     
     sample_seq = "MALWMRLLPLLALLALWGPDPAAAFVNQHLCGSHLVEALYLVCGERGFFYTPKTRREAEDLQVGQVELGGGPGAGSLQPLALEGSLQKRGIVEQCCTSICSLYQLENYCN"
     
-    seq_input = st.text_area("Amino Acid Sequence", value="", placeholder="Paste residues (e.g. MTAIIKE...)", height=100).upper().replace("\n", "").replace(" ", "")
+    # Initialize session state for sequence if not exists
+    if "seq_input_val" not in st.session_state:
+        st.session_state["seq_input_val"] = ""
+        
+    seq_input_raw = st.text_area("Amino Acid Sequence", key="seq_input_val", placeholder="Paste residues (e.g. MTAIIKE...)", height=100)
+    seq_input = seq_input_raw.upper().replace("\n", "").replace(" ", "")
     
     col_btns = st.columns([1, 1, 4])
     with col_btns[0]:
@@ -465,7 +470,7 @@ with tab_profile:
     with col_btns[1]:
         btn_sample = st.button("Load Human Insulin")
         if btn_sample:
-            seq_input = sample_seq
+            st.session_state["seq_input_val"] = sample_seq
             st.rerun()
             
     if btn_analyze or seq_input:
