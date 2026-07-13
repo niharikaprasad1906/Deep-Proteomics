@@ -1,6 +1,14 @@
-# Deep Proteomics: Skip-gram Neural Word Embeddings for Protein Analysis
+# 🧬 Deep Proteomics: Skip-gram Neural Word Embeddings
 
-🧬 **Treating Protein Sequences as Biological Sentences and k-mers as Words**
+> **An NLP-powered machine learning pipeline for biological k-mer vector space decoding and interactive visualization.**
+
+[![Python Version](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg?style=flat-square)](https://www.python.org/)
+[![Flask Framework](https://img.shields.io/badge/backend-Flask-red.svg?style=flat-square)](https://flask.palletsprojects.com/)
+[![Gensim Word2Vec](https://img.shields.io/badge/NLP-Word2Vec-violet.svg?style=flat-square)](https://radimrehurek.com/gensim/)
+[![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-orange.svg?style=flat-square)](https://scikit-learn.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+
+---
 
 Deep Proteomics is a machine learning pipeline that applies Natural Language Processing (NLP) techniques to proteomics. By treating protein sequences as biological sentences and overlapping k-mers (e.g., 3-mers) as words, this project trains a Skip-gram neural network (Word2Vec) on protein sequence data. It learns a dense vector representation where biologically similar k-mers are positioned near one another in a low-dimensional embedding space.
 
@@ -43,20 +51,20 @@ The project features a complete command-line training pipeline, static visualiza
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Installation & Setup
 
-### Prerequisites
+### 📋 Prerequisites
 * Python 3.10+
 * Git
 
-### Local Setup
-1. Clone the repository:
+### 🔧 Local Installation Steps
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/niharikaprasad1906/Deep-Proteomics.git
    cd Deep-Proteomics
    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
@@ -67,34 +75,37 @@ The project features a complete command-line training pipeline, static visualiza
 
 You can run the end-to-end pipeline using `main.py`. By default, it will load the human proteome FASTA file and run training.
 
-### 1. Test Run (Fast Verification)
+### 🧪 1. Test Run (Fast Verification)
 Train on a subset of 1000 sequences to verify setup:
 ```bash
 python main.py --limit 1000
 ```
 
-### 2. Full Run
+### 🧬 2. Full Run
 Train on the entire human proteome dataset (may take some time depending on hardware):
 ```bash
 python main.py
 ```
 
-### 3. Custom CLI Configurations
+### 🎛️ 3. Custom CLI Configurations
 Modify parameters such as k-mer size, dimensionality, context window size, and reduction methods:
 ```bash
 python main.py --k 3 --dim 128 --window 5 --epochs 15 --method tsne
 ```
 
 **Training CLI Arguments:**
-* `--fasta`: Path to input FASTA file.
-* `--output`: Output folder path (default: `./output`).
-* `--limit`: Limit number of entries to process.
-* `--k`: Size of k-mer word segments (default: 3).
-* `--stride`: Stride size for extraction (default: 1).
-* `--dim`: Word2Vec vector dimensions (default: 100).
-* `--window`: Context window size (default: 5).
-* `--epochs`: Epoch iterations (default: 10).
-* `--method`: Projection algorithm (`tsne` or `pca`).
+
+| Argument | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `--fasta` | `str` | *Human Proteome* | Path to input FASTA file |
+| `--output` | `str` | `./output` | Output folder path for models and plots |
+| `--limit` | `int` | `None` | Limit number of entries to process |
+| `--k` | `int` | `3` | Size of k-mer word segments |
+| `--stride` | `int` | `1` | Stride size for extraction (1 = overlapping) |
+| `--dim` | `int` | `100` | Word2Vec vector dimensions |
+| `--window` | `int` | `5` | Context window size |
+| `--epochs` | `int` | `10` | Epoch iterations |
+| `--method` | `str` | `tsne` | Projection algorithm (`tsne` or `pca`) |
 
 ---
 
@@ -102,16 +113,16 @@ python main.py --k 3 --dim 128 --window 5 --epochs 15 --method tsne
 
 The web dashboard is the ultimate tool for visual analysis. It caches 2D and 3D projections on startup, enabling lightning-fast client-side transitions.
 
-1. Start the Flask server:
-   ```bash
-   python server.py
-   ```
-2. Open your browser and navigate to:
-   ```
-   http://127.0.0.1:5000
-   ```
+### 🔌 1. Start the Flask server:
+```bash
+python server.py
+```
+### 🌐 2. Open your browser and navigate to:
+```
+http://127.0.0.1:5000
+```
 
-### Features Inside the Dashboard
+### 🧠 Interactive Dashboard Features
 * **Toggle Views**: Move between a 2D Scatter plot and a **3D Spatial Topology** visualization.
 * **Interactive Neighbors**: Click a k-mer on the chart to inspect its 10 nearest context neighbors. The plot will draw dashed connections in the vector space.
 * **Sequence Alignment Profiler**: Load a custom protein sequence to plot its localized hydrophobicity profile and coherence index (next-neighbor cosine similarity).
@@ -122,12 +133,12 @@ The web dashboard is the ultimate tool for visual analysis. It caches 2D and 3D 
 
 To run the application inside a container (serving the web dashboard via a production Gunicorn WSGI server):
 
-1. Build the image:
+1. **Build the image:**
    ```bash
    docker build -t deep-proteomics-dashboard .
    ```
 
-2. Run the container:
+2. **Run the container:**
    ```bash
    docker run -d -p 5000:5000 deep-proteomics-dashboard
    ```
