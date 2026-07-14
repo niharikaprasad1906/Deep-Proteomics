@@ -28,7 +28,24 @@ The project features a complete command-line training pipeline, static visualiza
   * **Sequence Profiler**: Paste a protein sequence to map its residues to embedding coherence metrics and plot localized properties.
 * **Cloud-Ready Containerization**: Dockerfile configurations for instant local or cloud deployment.
 
+## 🏗️ System Architecture
+
+The following diagram illustrates the pipeline execution flow, from raw biological protein sequences down to the interactive web interfaces:
+
+```mermaid
+graph TD
+    A[FASTA Sequence Dataset] --> B[tokenizer.py]
+    B -->|Tokenizes to overlapping k-mers| C[model.py]
+    C -->|Trains Skip-gram Word2Vec| D[skipgram_model.model]
+    D --> E[server.py / app_streamlit.py]
+    E -->|Precomputes PCA & t-SNE Projections| F[Cache / Memory]
+    F -->|Served via REST APIs / Web Interface| G[Interactive Web Dashboard]
+    G -->|Interactive Neighbors / Clicking| H[K-mer Inspector]
+    G -->|Custom Sequence Entry| I[Sequence Profiler]
+```
+
 ---
+
 
 ## 📁 Repository Structure
 
