@@ -7,6 +7,7 @@
 [![Gensim Word2Vec](https://img.shields.io/badge/NLP-Word2Vec-violet.svg?style=flat-square)](https://radimrehurek.com/gensim/)
 [![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-orange.svg?style=flat-square)](https://scikit-learn.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://deep-proteomics-oakrttfof6nwvgtzykurb3.streamlit.app/)
 
 ---
 
@@ -149,6 +150,8 @@ http://127.0.0.1:5000
 ## 🎈 Running the Streamlit Dashboard (Streamlit Cloud Deployable)
 
 Streamlit is an excellent option for single-command local serving and instant deployment to **Streamlit Community Cloud** directly from your GitHub repository.
+
+🚀 **Live Application Link**: [https://deep-proteomics-oakrttfof6nwvgtzykurb3.streamlit.app/](https://deep-proteomics-oakrttfof6nwvgtzykurb3.streamlit.app/)
 
 ### 🔌 1. Run the Streamlit app locally:
 ```bash
